@@ -1,5 +1,24 @@
 function changeMe(arr) {
+    const person = arr;
+
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+
+    const newObject = {};
     // you can only write your code here!
+    if (person.length > 0) {
+        for (let i = 0; i < person.length; i++) {
+            const fullName = `${person[i][0]} ${person[i][1]}`;
+            newObject[fullName] = {
+                firstName: person[i][0],
+                lastName: person[i][1],
+                gender: person[i][2],
+                age: currentYear - person[i][3] || 'Invalid Birth Year',
+            }
+        }
+    }
+
+    console.log(newObject);
 }
 
 // TEST CASES

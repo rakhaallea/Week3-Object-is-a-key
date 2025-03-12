@@ -22,6 +22,40 @@ maka output:
 
 function shoppingTime(memberId, money) {
     // you can only write your code here!
+    const listItem = {
+        'Sepatu Stacattu': 1500000,
+        'Baju Zoro': 500000,
+        'Baju H&N': 250000,
+        'Sweater Uniklooh': 175000,
+        'Casing Handphone': 50000
+    }
+
+    const keys = Object.keys(listItem);
+
+    let data = {};
+
+    if (memberId) {
+        if (money < 50000) {
+            return "Mohon maaf, uang tidak cukup"
+        }
+        data = {
+            memberId: memberId,
+            money: money,
+            listPurchased: [],
+        }
+        for (let i = 0; i < keys.length; i++) {
+            if (money >= listItem[keys[i]]) {
+                data.listPurchased.push(keys[i]);
+                money -= listItem[keys[i]];
+                data.changeMoney = money;
+            }
+        }
+
+    } else {
+        return "Mohon maaf, toko X hanya berlaku untuk member saja"
+    }
+
+    return data;
 }
 
 // TEST CASES

@@ -12,12 +12,39 @@ Function countProfit akan mengembalikan/me-return sebuah array of object dimana 
 */
 
 function countProfit(shoppers) {
-    var listBarang = [['Sepatu Stacattu', 1500000, 10],
+    const listBarang = [['Sepatu Stacattu', 1500000, 10],
     ['Baju Zoro', 500000, 2],
     ['Sweater Uniklooh', 175000, 1]
     ];
 
     // you can only write your code here!
+    if (shoppers.length > 0) {
+        let profit = [];
+
+        for (let i = 0; i < listBarang.length; i++) {
+            const product = {
+                product: listBarang[i][0],
+                shoppers: [],
+                leftOver: listBarang[i][2],
+                totalProfit: 0,
+            }
+            let sold = 0;
+            for (let j = 0; j < shoppers.length; j++) {
+                if (shoppers[j].product === listBarang[i][0]) {
+                    if (shoppers[j].amount <= product.leftOver) {
+                        sold += shoppers[j].amount;
+                        product.shoppers.push(shoppers[j].name);
+                        product.leftOver = product.leftOver - shoppers[j].amount;
+                    }
+                }
+            }
+            product.totalProfit = sold * listBarang[i][1];
+            profit.push(product);
+        }
+        return profit;
+    } else {
+        return [];
+    }
 }
 
 // TEST CASES
