@@ -1,5 +1,60 @@
 function highestScore(students) {
     // Code disini
+
+    if (students.length <= 0) {
+        return {};
+    }
+    const result = {};
+
+    let maxFoxes = [];
+    let maxWolves = [];
+    let maxTigers = [];
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].class === 'foxes') {
+            maxFoxes.push(students[i].score);
+        }
+        if (students[i].class === 'wolves') {
+            maxWolves.push(students[i].score);
+        }
+        if (students[i].class === 'tigers') {
+            maxTigers.push(students[i].score);
+        }
+    }
+
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].class === 'foxes') {
+            let highest = Math.max(...maxFoxes);
+
+            if (students[i].score === highest) {
+                result.foxes = {
+                    name: students[i].name,
+                    score: students[i].score,
+                }
+            }
+        }
+        if (students[i].class === 'wolves') {
+            let highest = Math.max(...maxWolves);
+
+            if (students[i].score === highest) {
+                result.wolves = {
+                    name: students[i].name,
+                    score: students[i].score,
+                }
+            }
+        }
+        if (students[i].class === 'tigers') {
+            let highest = Math.max(...maxTigers);
+
+            if (students[i].score === highest) {
+                result.tigers = {
+                    name: students[i].name,
+                    score: students[i].score,
+                }
+            }
+        }
+    }
+
+    return result;
 }
 
 // TEST CASE
